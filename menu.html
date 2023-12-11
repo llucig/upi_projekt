@@ -1,0 +1,30 @@
+<!-- menu.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>McDonald's Menu</title>
+  </head>
+  <body>
+    <header>
+      <div class="nav">
+        <a href="" id="index.html">Home</a>
+        <a href="#" id="cartLink">Košarica</a>
+        <a href="registration.html">Registracija</a>
+        <a href="login.html">Prijava</a>
+      </div>
+    </header>
+    <main>
+      <section class="menu">
+        <h2 id="restaurantName">McDonald's Menu</h2>
+        <ul id="menuList">
+          <!-- Popis jela generiran putem JavaScript-a -->
+        </ul>
+      </section>
+      <button id="orderBtn" onclick="addToCart()">Dodaj u Košaricu</button>
+    </main>
+    <script src="menu.js"></script>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+<!-- registration.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Registracija</title>
+  </head>
+  <body>
+    <header>
+      <div class="nav">
+        <a href="" id="index.html">Home</a>
+        <a href="#" id="cartLink">Košarica</a>
+        <a href="#">Registracija</a>
+        <a href="login.html">Prijava</a>
+      </div>
+    </header>
+    <main>
+      <section class="registration-form">
+        <h2>Registracija</h2>
+        <form id="registrationForm">
+          <label for="firstName">Ime:</label>
+          <input type="text" id="firstName" required minlength="3" />
+
+          <label for="lastName">Prezime:</label>
+          <input type="text" id="lastName" required minlength="3" />
+
+          <label for="email">Email adresa:</label>
+          <input type="email" id="email" required />
+
+          <label for="address">Adresa:</label>
+          <input type="text" id="address" required />
+
+          <label for="phoneNumber">Broj mobitela:</label>
+          <input type="tel" id="phoneNumber" required minlength="6" />
+
+          <label for="password">Lozinka:</label>
+          <input
+            type="password"
+            id="password"
+            required
+            minlength="8"
+            pattern="^(?=.*[!@#&?%]).*$"
+          />
+
+          <label for="confirmPassword">Potvrdi lozinku:</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            required
+            minlength="8"
+            pattern="^(?=.*[!@#&?%]).*$"
+          />
+
+          <button type="button" onclick="register()">Registriraj se</button>
+        </form>
+      </section>
+    </main>
+    <script src="registration.js"></script>
+  </body>
+</html>
