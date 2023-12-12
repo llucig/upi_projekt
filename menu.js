@@ -1,60 +1,40 @@
-// menu.js
-// Popis restorana
-const restaurants = [
-  {
-    name: "McDonald's",
-    menu: [
-      { name: "Big Mac", description: "Classic burger", price: 5.99 },
-      // Dodajte više jela po potrebi
-    ],
-  },
-  {
-    name: "KFC",
-    menu: [
-      {
-        name: "Original Recipe Chicken",
-        description: "Fried chicken",
-        price: 7.99,
-      },
-      // Dodajte više jela po potrebi
-    ],
-  },
-  // Dodajte više restorana po potrebi
-];
-
-// Prikaz jelovnika na temelju odabranog restorana
 document.addEventListener("DOMContentLoaded", function () {
-  const urlParams = new URLSearchParams(window.location.search);
-  const restaurantName = urlParams.get("restaurant");
-  const restaurant = restaurants.find(
-    (r) => r.name.toLowerCase() === restaurantName.toLowerCase()
-  );
+  const addToCartButtons = document.querySelectorAll(".addToCart");
 
-  if (restaurant) {
-    document.getElementById(
-      "restaurantName"
-    ).textContent = `${restaurant.name} Menu`;
+  addToCartButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const parentItem = button.closest(".item");
 
-    const menuList = document.getElementById("menuList");
-    restaurant.menu.forEach((item) => {
-      const menuItem = document.createElement("li");
-      menuItem.innerHTML = `<strong>${item.name}</strong><br>${item.description}<br>Cijena: ${item.price} kn<button class="addToCartBtn" onclick="addToCart('${item.name}', '${item.description}', ${item.price})">Dodaj u košaricu</button>`;
-      menuList.appendChild(menuItem);
+      // Provjeri postojanje potrebnih elemenata
+      const itemNameElement = parentItem.querySelector("h3");
+      const itemDescriptionElement =
+        parentItem.querySelector(".item-description");
+      const itemPriceElement = parentItem.querySelector(".item-price");
+
+      if (!itemNameElement || !itemDescriptionElement || !itemPriceElement) {
+        console.error("Nisu pronađeni svi potrebni elementi.");
+        return;
+      }
+
+      const itemName = itemNameElement.textContent;
+      const itemDescription = itemDescriptionElement.textContent;
+
+      // Dohvati cijenu iz atributa data-price
+      const itemPrice = parseFloat(itemPriceElement.dataset.price) || 0;
+
+      // Prikazi alert s podacima
+      alert(
+        `${itemName}\n${itemDescription}\nCijena: $${itemPrice.toFixed(2)}`
+      );
+
+      // Spremi podatke u lokalno pohranište
+      const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+      cartItems.push({
+        name: itemName,
+        description: itemDescription,
+        price: itemPrice,
+      });
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
     });
-  }
+  });
 });
-
-function addToCart(name, description, price) {
-  const selectedItem = {
-    name,
-    description,
-    price,
-  };
-
-  // Spremi odabrani proizvod u košaricu
-  const cart = JSON.parse(localStorage.getItem("cart")) || [];
-  cart.push(selectedItem);
-  localStorage.setItem("cart", JSON.stringify(cart));
-
-  alert("Proizvod dodan u košaricu!");
-}

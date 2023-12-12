@@ -1,29 +1,49 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
-    <title>Restoran App</title>
+    <title>Restoran Stranica</title>
+    <link rel="stylesheet" href="index.css" />
   </head>
   <body>
     <header>
-      <div class="nav">
-        <a href="" id="index.html">Home</a>
-        <a href="#" id="cartLink">Košarica</a>
-        <a href="registration.html">Registracija</a>
-        <a href="login.html">Prijava</a>
-      </div>
+      <h1>Restoran Stranica</h1>
     </header>
-    <main>
-      <section class="restaurants">
-        <h2>Restorani</h2>
-        <ul id="restaurantList">
-          <!-- Popis restorana generiran putem JavaScript-a -->
-        </ul>
-      </section>
-    </main>
-    <script src="main.js"></script>
+
+    <nav>
+      <a href="#">Home</a>
+      <a href="cart.html">Košarica</a>
+      <a href="registration.html">Registracija</a>
+      <a href="login.html">Prijava</a>
+      <!-- Dodao poveznice za svaki restoran -->
+    </nav>
+
+    <section>
+      <div id="div1">
+        <a href="mcdonalds.html">
+          <img src="mcd.png" alt="McDonald's" />
+          <h3>McDonald's</h3>
+        </a>
+      </div>
+      <div id="div2">
+        <a href="burgerking.html">
+          <img src="bk.png" alt="Burger King" />
+          <h3>Burger King</h3>
+        </a>
+      </div>
+      <div id="div3">
+        <a href="kfc.html">
+          <img src="kfc.png" alt="KFC" />
+          <h3>KFC</h3>
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      <!-- Prazan footer trenutno -->
+    </footer>
+
+    <script src="registration.js"></script>
   </body>
 </html>

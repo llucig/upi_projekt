@@ -1,26 +1,28 @@
-// login.js
-function login(emailInput, passwordInput) {
-  const email = emailInput || document.getElementById("email").value;
-  const password = passwordInput || document.getElementById("password").value;
+document.addEventListener("DOMContentLoaded", function () {
+  const loginForm = document.getElementById("loginForm");
 
-  // Dohvati korisnika iz lokalne pohrane
-  const storedUser = localStorage.getItem("user");
-  if (!storedUser) {
-    alert("Nema registriranog korisnika. Molimo, registrirajte se.");
-    return;
+  if (loginForm) {
+    loginForm.addEventListener("submit", handleLogin);
   }
+});
 
-  const user = JSON.parse(storedUser);
+function handleLogin(event) {
+  event.preventDefault();
 
-  // Simulacija provjere autentičnosti
-  if (email === user.email && password === user.password) {
-    alert("Uspješna prijava!");
+  const loginEmail = document.getElementById("loginEmail").value;
+  const loginPassword = document.getElementById("loginPassword").value;
+
+  const registeredUsers =
+    JSON.parse(localStorage.getItem("registeredUsers")) || [];
+
+  const user = registeredUsers.find(
+    (user) => user.email === loginEmail && user.password === loginPassword
+  );
+
+  if (user) {
+    alert(`Uspješna prijava!\nEmail: ${loginEmail}\nLozinka: ${loginPassword}`);
+    window.location.href = "index.html";
   } else {
-    alert("Neuspješna prijava. Provjerite svoje podatke."); // Ovdje je promijenjena poruka
+    alert("Neuspješna prijava. Provjerite email i lozinku.");
   }
 }
-
-// Ako se kod izvršava izvan pregledača (npr. u Node.js okruženju)
-
-  module.exports = { login };
-

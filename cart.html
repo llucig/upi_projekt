@@ -1,32 +1,30 @@
-<!-- cart.html -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Košarica</title>
-    <link rel="stylesheet" href="styles.css" />
-    <!-- Dodajte ostale stilove i meta oznake prema potrebi -->
-
-    <style>
-      /* Dodajte stilove prema potrebi */
-    </style>
+    <link rel="stylesheet" href="cart.css" />
   </head>
   <body>
     <header>
-      <div class="nav">
-        <a href="index.html">Home</a>
-        <a href="#" id="cartLink">Košarica</a>
-        <a href="registration.html">Registracija</a>
-        <a href="login.html">Prijava</a>
-        <a href="menu.html">Povratak na meni</a>
-      </div>
+      <h1>Košarica</h1>
     </header>
-    <main>
-      <section id="cartContainer">
-        <!-- Ovdje će se dinamički generirati sadržaj košarice -->
-      </section>
-    </main>
-    <script type="module" src="cart.js"></script>
+
+    <section id="cartItems">
+      <!-- Ovdje će se prikazati artikli iz košarice -->
+    </section>
+
+    <section id="total">
+      <p>Ukupna cijena: <span id="totalPrice">0.00€</span></p>
+      <p>Dostava: 2.00€</p>
+      <p>Ukupno s dostavom: <span id="totalWithDelivery">2.00€</span></p>
+    </section>
+
+    <footer>
+      <!-- Prazan footer trenutno -->
+    </footer>
+
+    <script src="cart.js"></script>
   </body>
 </html>
