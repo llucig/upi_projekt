@@ -4,6 +4,14 @@ document.getElementById("cartLink").addEventListener("click", viewCart);
 function viewCart() {
   alert("Prikaz košarice");
 }
+// main.js
+document.getElementById("cartLink").addEventListener("click", prikaziKosaricu);
+
+function prikaziKosaricu() {
+  // Preusmjeri na stranicu košarice
+  window.location.href = "cart.html";
+}
+
 
 // Popis restorana
 const restaurants = [
