@@ -1,4 +1,10 @@
 // main.js
+document.getElementById("index.html").addEventListener("click", redirectToHome);
+
+function redirectToHome() {
+  window.location.href = "index.html";
+}
+
 document.getElementById("cartLink").addEventListener("click", viewCart);
 
 function viewCart() {
