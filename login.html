@@ -1,38 +1,36 @@
-<!-- login.html -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
     <title>Prijava</title>
+    <link rel="stylesheet" href="login.css" />
+    <script src="login.js"></script>
   </head>
   <body>
     <header>
-      <div class="nav">
-        <a href="index.html">Home</a>
-        <a href="#" id="cartLink">Košarica</a>
-        <a href="registration.html">Registracija</a>
-        <a href="#">Prijava</a>
-      </div>
+      <h1>Prijava</h1>
     </header>
-    <main>
-      <section class="login-form">
-        <h2>Prijava</h2>
-        <form id="loginForm">
-          <label for="email">Email adresa:</label>
-          <input type="email" id="email" required />
 
-          <label for="password">Lozinka:</label>
-          <input type="password" id="password" required />
+    <section>
+      <form id="loginForm">
+        <label for="loginEmail">Email:</label>
+        <input type="email" id="loginEmail" name="loginEmail" required />
 
-          <button type="button" onclick="login()">Prijavi se</button>
-        </form>
-      </section>
-    </main>
-    <script src="login.js"></script>
-    <!-- Dodajte ovu liniju kako biste uključili ažurirani main.js -->
-    <script src="main.js"></script>
+        <label for="loginPassword">Lozinka:</label>
+        <input
+          type="password"
+          id="loginPassword"
+          name="loginPassword"
+          required
+        />
 
+        <button type="submit">Prijavi se</button>
+      </form>
+    </section>
+
+    <footer>
+      <!-- Prazan footer trenutno -->
+    </footer>
   </body>
 </html>

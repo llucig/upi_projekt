@@ -1,51 +1,69 @@
-// registration.js
+document.addEventListener("DOMContentLoaded", function () {
+  const registrationForm = document.getElementById("registrationForm");
 
-function register() {
-  const firstNameInput = document.getElementById("firstName");
-  const lastNameInput = document.getElementById("lastName");
-  const emailInput = document.getElementById("email");
-  const addressInput = document.getElementById("address");
-  const phoneNumberInput = document.getElementById("phoneNumber");
-  const passwordInput = document.getElementById("password");
-  const confirmPasswordInput = document.getElementById("confirmPassword");
+  if (registrationForm) {
+    registrationForm.addEventListener("submit", validateRegistration);
+  }
+});
 
-  const firstName = firstNameInput.value;
-  const lastName = lastNameInput.value;
-  const email = emailInput.value;
-  const address = addressInput.value;
-  const phoneNumber = phoneNumberInput.value;
-  const password = passwordInput.value;
-  const confirmPassword = confirmPasswordInput.value;
+function validateRegistration(event) {
+  event.preventDefault();
 
-  // Validacija podataka
-  if (!firstName || !lastName || !email || !address || !phoneNumber || !password || !confirmPassword) {
-    alert("Molimo popunite sva polja.");
+  const firstName = document.getElementById("firstName").value;
+  const lastName = document.getElementById("lastName").value;
+  const address = document.getElementById("address").value;
+  const email = document.getElementById("email").value;
+  const phoneNumber = document.getElementById("phoneNumber").value;
+  const password = document.getElementById("password").value;
+  const confirmPassword = document.getElementById("confirmPassword").value;
+
+  if (
+    !isValidName(firstName) ||
+    !isValidName(lastName) ||
+    address.trim() === "" ||
+    !isValidEmail(email) ||
+    !isValidPhoneNumber(phoneNumber) ||
+    password.length < 8 ||
+    !containsTwoNumbers(password) ||
+    password !== confirmPassword
+  ) {
+    alert("Neispravni podaci. Provjerite unesene informacije.");
     return;
   }
 
-  if (password !== confirmPassword) {
-    alert("Lozinke se ne podudaraju");
-    return;
-  }
+  const registeredUsers =
+    JSON.parse(localStorage.getItem("registeredUsers")) || [];
 
-  // Spremi korisnika u lokalno pohranu
-  const user = {
+  const newUser = {
     firstName,
     lastName,
-    email,
     address,
+    email,
     phoneNumber,
     password,
   };
 
-  localStorage.setItem("user", JSON.stringify(user));
+  registeredUsers.push(newUser);
+  localStorage.setItem("registeredUsers", JSON.stringify(registeredUsers));
 
-  alert(
-    `Registracija uspješna!\nIme: ${firstName}\nPrezime: ${lastName}\nEmail: ${email}\nAdresa: ${address}\nBroj mobitela: ${phoneNumber}`
-  );
+  alert("Uspješna registracija!");
+
+  window.location.href = "login.html";
 }
 
-// Ako se kod izvršava izvan pregledača (npr. u Node.js okruženju)
+function isValidName(name) {
+  return name.trim() !== "" && name.length > 2;
+}
 
-  module.exports = { register };
+function isValidEmail(email) {
+  return email.includes("@");
+}
 
+function isValidPhoneNumber(phoneNumber) {
+  return phoneNumber.length > 8;
+}
+
+function containsTwoNumbers(str) {
+  const regex = /\d.*\d/;
+  return regex.test(str);
+}
