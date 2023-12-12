@@ -1,7 +1,7 @@
 // login.js
-function login() {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+function login(emailInput, passwordInput) {
+  const email = emailInput || document.getElementById("email").value;
+  const password = passwordInput || document.getElementById("password").value;
 
   // Dohvati korisnika iz lokalne pohrane
   const storedUser = localStorage.getItem("user");
@@ -16,6 +16,11 @@ function login() {
   if (email === user.email && password === user.password) {
     alert("Uspješna prijava!");
   } else {
-    alert("Neuspješna prijava. Provjerite svoje podatke.");
+    alert("Neuspješna prijava. Provjerite svoje podatke."); // Ovdje je promijenjena poruka
   }
 }
+
+// Ako se kod izvršava izvan pregledača (npr. u Node.js okruženju)
+
+  module.exports = { login };
+
