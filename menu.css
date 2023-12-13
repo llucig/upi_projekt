@@ -2,20 +2,26 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
 }
 
 header {
-    background-color: #333;
+    background-color: #49c579 ;
     color: #fff;
     padding: 10px;
     text-align: center;
+    width: 100%; /* Dodaj ovu liniju za punu širinu */
 }
 
 section {
     padding: 20px;
     display: flex;
-    flex-direction: column; /* Postavi smjer na column */
-    align-items: center; /* Centriraj elemente po horizontali */
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
 }
 
 .item, .item2 {
@@ -23,6 +29,7 @@ section {
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
+    align-items: center; /* Centriraj slike po horizontali */
 }
 
 .item h3, .item2 h3 {
@@ -30,18 +37,16 @@ section {
 }
 
 .item img, .item2 img {
-    width: 100%; /* Postavi širinu na 100% */
-    max-width: 200px; /* Postavi maksimalnu širinu */
-    height: auto; /* Automatski održava omjer širine i visine */
+    width: 100%;
+    max-width: 200px;
+    height: auto;
     border: 1px solid #ddd;
 }
 
 footer {
-    background-color: #333;
+    background-color: #49c579;
     color: #fff;
     text-align: center;
     padding: 10px;
-    position: absolute;
-    bottom: 0;
     width: 100%;
 }
