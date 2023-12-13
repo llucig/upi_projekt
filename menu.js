@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   addToCartButtons.forEach((button) => {
     button.addEventListener("click", function () {
-      const parentItem = button.closest(".item, .item2");
+      const parentItem = button.closest(".item, .item2, .item3, .item4, .item5, .item6, .item7, .item8, .item9, .item10");
 
       // Provjeri postojanje potrebnih elemenata
       const itemNameElement = parentItem.querySelector("h3");
