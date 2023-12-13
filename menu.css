@@ -24,7 +24,7 @@ section {
     gap: 20px;
 }
 
-.item, .item2 {
+.item, .item2, .item3, .item4, .item5, .item6, .item7, .item8, .item9, .item10 {
     text-align: center;
     margin-bottom: 20px;
     display: flex;
@@ -32,11 +32,11 @@ section {
     align-items: center; /* Centriraj slike po horizontali */
 }
 
-.item h3, .item2 h3 {
+.item h3, .item2 h3, .item3 h3, .item4 h3, .item5 h3, .item6 h3, .item7 h3, .item8 h3, .item9 h3, .item10 h3{
     margin-bottom: 10px;
 }
 
-.item img, .item2 img {
+.item img, .item2 img, .item3 img, .item4 img, .item5 img, .item6 img, .item7 img, .item8 img, .item9 img, .item10 img{
     width: 100%;
     max-width: 200px;
     height: auto;
