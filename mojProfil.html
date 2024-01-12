@@ -44,6 +44,28 @@
         <p id="phoneNumber"></p>
       </div>
       <br />
+      <div id="orderDetails">
+        <h2>Podaci o narudžbi</h2>
+        <div id="orderItems">
+          <!-- Ovdje će se prikazati artikli iz narudžbe -->
+        </div>
+        <p>Ukupna cijena narudžbe: <span id="orderTotalPrice">0.00€</span></p>
+      </div>
+
+      <div id="deliveryDetails">
+        <h2>Podaci o dostavi</h2>
+        <form id="deliveryForm">
+          <label for="deliveryAddress">Adresa dostave:</label>
+          <input type="text" id="deliveryAddress" value="" required />
+          <br />
+          <label for="deliveryPhoneNumber">Broj telefona:</label>
+          <input type="text" id="deliveryPhoneNumber" value="" required />
+          <br />
+          <button type="button" data-action="updateDelivery">
+            Ažuriraj podatke o dostavi
+          </button>
+        </form>
+      </div>
 
       <form id="changePasswordForm">
         <label for="oldPassword">Stara lozinka:</label>
@@ -64,7 +86,7 @@
       <button type="button" onclick="obrisiProfil()">Obriši profil</button>
 
       <div class="cart-details">
-        <h2>Podaci o dostavi</h2>
+        <h2>Podaci o košarici</h2>
         <div id="cartItems">
           <!-- Ovdje će se prikazati artikli iz košarice -->
         </div>
