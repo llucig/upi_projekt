@@ -27,23 +27,72 @@
       <p>Ukupna cijena: <span id="totalPrice">0.00€</span></p>
       <p>Dostava: 2.00€</p>
       <p>Ukupno s dostavom: <span id="totalWithDelivery">2.00€</span></p>
+
+      <button id="orderButton">Naruči</button>
     </section>
 
     <!-- Dodajte ovo ispod vašeg postojećeg HTML koda za prikaz profila -->
-    <div id="deliveryDetails">
-      <h2>Podaci o dostavi</h2>
-      <form id="deliveryForm">
-        <label for="address">Adresa dostave:</label>
-        <input type="text" id="deliveryAddress" value="" required />
-        <br />
-        <label for="phoneNumber">Broj telefona:</label>
-        <input type="text" id="deliveryPhoneNumber" value="" required />
-        <br />
-
-        <button type="button" data-action="updateDelivery">
-          Ažuriraj podatke o dostavi
-        </button>
-      </form>
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+    
+        <p>
+          <label>
+            <input type="checkbox" id="changeDeliveryAddress" />
+            Promijeni adresu za dostavu
+          </label>
+        </p>
+        <div id="newAddressSection" style="display: none;">
+          <label for="newDeliveryAddress">Nova adresa za dostavu:</label>
+          <input type="text" id="newDeliveryAddress" />
+        </div>
+    
+        <div id="paymentOptions">
+          <label>
+            <input type="radio" name="paymentOption" class="paymentRadio" id="cashPayment" checked />
+            Plaćanje gotovinom
+          </label>
+        </div>
+    
+        <div id="cardPaymentOption">
+          <label>
+            <input type="radio" name="paymentOption" class="paymentRadio" id="cardPayment" />
+            Plaćanje karticom
+          </label>
+        </div>
+    
+        <div id="cardDetailsLabels" style="display: none;">
+          <div class="card-label">
+            <label for="cardOwnerName">Naziv vlasnika kartice:</label>
+            <input type="text" id="cardOwnerName" />
+          </div>
+          <div class="card-label">
+            <label for="cardNumber">Broj kartice:</label>
+            <input type="text" id="cardNumber" />
+          </div>
+          <div class="card-label">
+            <label for="cardExpiration">Datum isteka kartice:</label>
+            <input type="text" id="cardExpiration" />
+          </div>
+          <div class="card-label">
+            <label for="cardCVC">CVV:</label>
+            <input type="text" id="cardCVC" />
+          </div>
+        </div>
+    
+        <button id="narucivanje" onclick="placeOrder()">Zaključi narudžbu</button>
+    
+        <!-- Dodajte ovo ispod vašeg postojećeg HTML koda za prikaz profila -->
+        <div id="orderConfirmationPopup" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="closeOrderConfirmationPopup()">&times;</span>
+            <p>Hvala na narudžbi!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+          
     </div>
 
     <footer>
