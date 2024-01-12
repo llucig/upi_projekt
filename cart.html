@@ -21,6 +21,22 @@
       <p>Ukupno s dostavom: <span id="totalWithDelivery">2.00€</span></p>
     </section>
 
+    <!-- Dodajte ovo ispod vašeg postojećeg HTML koda za prikaz profila -->
+<div id="deliveryDetails">
+  <h2>Podaci o dostavi</h2>
+  <form id="deliveryForm">
+    <label for="address">Adresa dostave:</label>
+    <input type="text" id="deliveryAddress" value="" required>
+    <br>
+    <label for="phoneNumber">Broj telefona:</label>
+    <input type="text" id="deliveryPhoneNumber" value="" required>
+    <br>
+    
+
+    <button type="button" data-action="updateDelivery">Ažuriraj podatke o dostavi</button>
+  </form>
+</div>
+
     <footer>
       <!-- Vaš footer sadržaj -->
   </footer>

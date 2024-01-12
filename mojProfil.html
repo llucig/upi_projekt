@@ -3,29 +3,62 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
     <title>Moj Profil</title>
 </head>
 <body>
-    <header>
-        <div class="nav">
-          <a href="index.html">Home</a>
-          <a href="#" id="cartLink">Košarica</a>
-          <a href="registration.html">Registracija</a>
-          <a href="login.html">Prijava</a>
-          <a href="menu.html">Povratak na meni</a>
-          <a href="#">Moj Profil</a>
-        </div>
-    </header>
+  <div class="profile-container">
+    <h2>Moj Profil</h2>
+    <p>Ovdje su informacije o vašem profilu:</p>
 
-<main>
-  <section id="mojProfilContainer">
-    <!-- Ovdje će se dinamički generirati sadržaj košarice -->
-  </section>
-</main>
-<script type="module" src="mojProfil.js"></script>
+    <label for="firstName">Ime:</label>
+    <p id="firstName"></p>
 
+    <label for="lastName">Prezime:</label>
+    <p id="lastName"></p>
+
+    <label for="address">Adresa:</label>
+    <p id="address"></p>
+
+    <label for="email">Email:</label>
+    <p id="email"></p>
+
+    <label for="phoneNumber">Broj telefona:</label>
+    <p id="phoneNumber"></p> <br>
+
+    <form id="changePasswordForm">
+      <label for="oldPassword">Stara lozinka:</label>
+      <input type="password" id="oldPassword" required>
+      <br>
+      <label for="newPassword">Nova lozinka:</label>
+      <input type="password" id="newPassword" required>
+      <br>
+      <button type="button" onclick="promijeniLozinku()">Promijeni lozinku</button>
+    </form>
+  
+
+    <button class="logout-btn" onclick="logout()">Odjava</button><br>
+    <button type="button" onclick="obrisiProfil()">Obriši profil</button>
+
+    <div class="cart-details">
+      <h2>Podaci o košarici</h2>
+      <div id="cartItems">
+        <!-- Ovdje će se prikazati artikli iz košarice -->
+      </div>
+      <p>Ukupna cijena: <span id="totalPrice">0.00€</span></p>
+    </div>
+
+   
+  </div>
+  <script src="mojProfil.js"></script>
 </body>
-
-
 </html>
+Ovaj HTML kod prikazuje informacije o korisniku na stranici "Moj profil" i uključuje gumb za odjavu. Podaci o korisniku preuzimaju se iz lokalnog skladišta (pretpostavlja se da su pohranjeni prilikom prijave). Gumb za odjavu briše podatke o prijavljenom korisniku iz lokalnog skladišta i preusmjerava korisnika na stranicu za prijavu.
+
+
+
+
+
+
+
+
+

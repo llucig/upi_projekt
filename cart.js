@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const cartItemsContainer = document.getElementById("cartItems");
   const totalPriceElement = document.getElementById("totalPrice");
   const totalWithDeliveryElement = document.getElementById("totalWithDelivery");
+  const deliveryAddressInput = document.getElementById("deliveryAddress");
+  const deliveryPhoneNumberInput = document.getElementById("deliveryPhoneNumber");
 
   function updateCart() {
     cartItemsContainer.innerHTML = ""; // Očisti prikaz košarice
@@ -48,4 +50,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Inicijalno ažuriraj košaricu kada se stranica učita
   updateCart();
+
+  // Ažuriranje podataka o dostavi
+  function updateDeliveryDetails() {
+    const newDeliveryAddress = deliveryAddressInput.value;
+    const newDeliveryPhoneNumber = deliveryPhoneNumberInput.value;
+
+    if (newDeliveryAddress && newDeliveryPhoneNumber) {
+      // Ažuriraj podatke u lokalnom skladištu
+      localStorage.setItem("deliveryAddress", newDeliveryAddress);
+      localStorage.setItem("deliveryPhoneNumber", newDeliveryPhoneNumber);
+
+      alert("Podaci o dostavi uspješno ažurirani!");
+    } else {
+      alert("Molimo unesite ispravne podatke o dostavi.");
+    }
+  }
+
+  // Dodajemo događaj na gumb za ažuriranje podataka o dostavi
+  const updateDeliveryButton = document.querySelector("button[data-action='updateDelivery']");
+  if (updateDeliveryButton) {
+    updateDeliveryButton.addEventListener("click", updateDeliveryDetails);
+  }
 });

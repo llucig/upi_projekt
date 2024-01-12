@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+
   const registrationForm = document.getElementById("registrationForm");
 
   if (registrationForm) {
@@ -8,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function validateRegistration(event) {
   event.preventDefault();
+  console.log("Validation started");
 
   const firstName = document.getElementById("firstName").value;
   const lastName = document.getElementById("lastName").value;
