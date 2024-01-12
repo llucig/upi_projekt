@@ -1,65 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Moj Profil</title>
-  <link rel="stylesheet" href="styles.css" /> <!-- Dodajte vaš stylesheet ako je potrebno -->
-</head>
-<body>
-  <div class="profile-container">
-    <h2>Moj Profil</h2>
-    <p>Ovdje su informacije o vašem profilu:</p>
-
-    <label for="firstName">Ime:</label>
-    <p id="firstName"></p>
-
-    <label for="lastName">Prezime:</label>
-    <p id="lastName"></p>
-
-    <label for="address">Adresa:</label>
-    <p id="address"></p>
-
-    <label for="email">Email:</label>
-    <p id="email"></p>
-
-    <label for="phoneNumber">Broj telefona:</label>
-    <p id="phoneNumber"></p> <br>
-
-    <div id="orderDetails">
-      <h2>Podaci o narudžbi</h2>
-      <div id="orderItems">
-        <!-- Ovdje će se prikazati artikli iz narudžbe -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Moj Profil</title>
+    <link rel="stylesheet" href="mojProfil.css" />
+  </head>
+  <body>
+    <header><h1>Moj Profil</h1></header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="cart.html">Košarica</a>
+      <a href="registration.html">Registracija</a>
+      <a href="login.html">Prijava</a>
+      <a href="mojProfil.html">MojProfil</a>
+      <!-- Dodao poveznice za svaki restoran -->
+    </nav>
+    <div class="profile-container">
+      <p>Ovdje su informacije o vašem profilu:</p>
+      <br />
+      <div class="profile-info" id="div1">
+        <label for="firstName">Ime:</label>
+        <p id="firstName"></p>
       </div>
-      <p>Ukupna cijena narudžbe: <span id="orderTotalPrice">0.00€</span></p>
-    </div>
+      <br />
+      <div class="profile-info" id="div2">
+        <label for="lastName">Prezime:</label>
+        <p id="lastName"></p>
+      </div>
+      <br />
+      <div class="profile-info" id="div3">
+        <label for="address">Adresa:</label>
+        <p id="address"></p>
+      </div>
+      <br />
+      <div class="profile-info" id="div4">
+        <label for="email">Email:</label>
+        <p id="email"></p>
+      </div>
+      <br />
+      <div class="profile-info" id="div5">
+        <label for="phoneNumber">Broj telefona:</label>
+        <p id="phoneNumber"></p>
+      </div>
+      <br />
 
-    <div id="deliveryDetails">
-      <h2>Podaci o dostavi</h2>
-      <form id="deliveryForm">
-        <label for="deliveryAddress">Adresa dostave:</label>
-        <input type="text" id="deliveryAddress" value="" required>
-        <br>
-        <label for="deliveryPhoneNumber">Broj telefona:</label>
-        <input type="text" id="deliveryPhoneNumber" value="" required>
-        <br>
-        <button type="button" data-action="updateDelivery">Ažuriraj podatke o dostavi</button>
+      <form id="changePasswordForm">
+        <label for="oldPassword">Stara lozinka:</label>
+        <input type="password" id="oldPassword" required />
+        <br />
+        <br />
+        <label for="newPassword">Nova lozinka:</label>
+        <input type="password" id="newPassword" required />
+        <br />
+        <br />
+        <button type="button" onclick="promijeniLozinku()">
+          Promijeni lozinku
+        </button>
       </form>
+      <br />
+      <button class="logout-btn" onclick="logout()">Odjava</button>
+      <br />
+      <button type="button" onclick="obrisiProfil()">Obriši profil</button>
+
+      <div class="cart-details">
+        <h2>Podaci o košarici</h2>
+        <div id="cartItems">
+          <!-- Ovdje će se prikazati artikli iz košarice -->
+        </div>
+        <p>Ukupna cijena: <span id="totalPrice">0.00€</span></p>
+      </div>
     </div>
-
-    <form id="changePasswordForm">
-      <label for="oldPassword">Stara lozinka:</label>
-      <input type="password" id="oldPassword" required>
-      <br>
-      <label for="newPassword">Nova lozinka:</label>
-      <input type="password" id="newPassword" required>
-      <br>
-      <button type="button" onclick="promijeniLozinku()">Promijeni lozinku</button>
-    </form>
-
-    <button class="logout-btn" onclick="logout()">Odjava</button><br>
-    <button type="button" onclick="obrisiProfil()">Obriši profil</button>
-  </div>
-  <script src="mojProfil.js"></script>
-</body>
+    <script src="mojProfil.js"></script>
+  </body>
 </html>

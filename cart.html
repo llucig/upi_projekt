@@ -10,6 +10,14 @@
     <header>
       <h1>Košarica</h1>
     </header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="cart.html">Košarica</a>
+      <a href="registration.html">Registracija</a>
+      <a href="login.html">Prijava</a>
+      <a href="mojProfil.html">MojProfil</a>
+      <!-- Dodao poveznice za svaki restoran -->
+    </nav>
 
     <section id="cartItems">
       <!-- Ovdje će se prikazati artikli iz košarice -->
@@ -22,25 +30,25 @@
     </section>
 
     <!-- Dodajte ovo ispod vašeg postojećeg HTML koda za prikaz profila -->
-<div id="deliveryDetails">
-  <h2>Podaci o dostavi</h2>
-  <form id="deliveryForm">
-    <label for="address">Adresa dostave:</label>
-    <input type="text" id="deliveryAddress" value="" required>
-    <br>
-    <label for="phoneNumber">Broj telefona:</label>
-    <input type="text" id="deliveryPhoneNumber" value="" required>
-    <br>
-    <button type="button" id="saveDeliveryDetails">Spremi</button>
-    
+    <div id="deliveryDetails">
+      <h2>Podaci o dostavi</h2>
+      <form id="deliveryForm">
+        <label for="address">Adresa dostave:</label>
+        <input type="text" id="deliveryAddress" value="" required />
+        <br />
+        <label for="phoneNumber">Broj telefona:</label>
+        <input type="text" id="deliveryPhoneNumber" value="" required />
+        <br />
 
-    
-  </form>
-</div>
+        <button type="button" data-action="updateDelivery">
+          Ažuriraj podatke o dostavi
+        </button>
+      </form>
+    </div>
 
     <footer>
       <!-- Vaš footer sadržaj -->
-  </footer>
+    </footer>
 
     <script src="cart.js"></script>
   </body>
