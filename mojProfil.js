@@ -4,7 +4,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const orderItemsContainer = document.getElementById("orderItems");
   const orderTotalPriceElement = document.getElementById("orderTotalPrice");
   const deliveryAddressInput = document.getElementById("deliveryAddress");
-  const deliveryPhoneNumberInput = document.getElementById("deliveryPhoneNumber");
+  const deliveryPhoneNumberInput = document.getElementById(
+    "deliveryPhoneNumber"
+  );
 
   function displayUserProfile() {
     const currentUser = getCurrentUser();
@@ -14,7 +16,8 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("lastName").innerText = currentUser.lastName;
       document.getElementById("address").innerText = currentUser.address;
       document.getElementById("email").innerText = currentUser.email;
-      document.getElementById("phoneNumber").innerText = currentUser.phoneNumber;
+      document.getElementById("phoneNumber").innerText =
+        currentUser.phoneNumber;
     }
   }
 
@@ -56,7 +59,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
     if (loggedInUser) {
-      const registeredUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
+      const registeredUsers =
+        JSON.parse(localStorage.getItem("registeredUsers")) || [];
       return registeredUsers.find((user) => user.email === loggedInUser.email);
     }
 
@@ -77,8 +81,9 @@ document.addEventListener("DOMContentLoaded", function () {
     if (currentUser && oldPassword === currentUser.password) {
       currentUser.password = newPassword;
 
-      const registeredUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
-      const updatedUsers = registeredUsers.map(user => {
+      const registeredUsers =
+        JSON.parse(localStorage.getItem("registeredUsers")) || [];
+      const updatedUsers = registeredUsers.map((user) => {
         if (user.email === currentUser.email) {
           return currentUser;
         }
@@ -97,16 +102,23 @@ document.addEventListener("DOMContentLoaded", function () {
     const currentUser = getCurrentUser();
 
     if (currentUser) {
-      const confirmed = confirm("Jeste li sigurni da želite obrisati svoj profil?");
+      const confirmed = confirm(
+        "Jeste li sigurni da želite obrisati svoj profil?"
+      );
 
       if (confirmed) {
-        const registeredUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
-        const updatedUsers = registeredUsers.filter(user => user.email !== currentUser.email);
+        const registeredUsers =
+          JSON.parse(localStorage.getItem("registeredUsers")) || [];
+        const updatedUsers = registeredUsers.filter(
+          (user) => user.email !== currentUser.email
+        );
 
         localStorage.setItem("registeredUsers", JSON.stringify(updatedUsers));
         localStorage.removeItem("loggedInUser");
 
-        alert("Profil uspješno obrisan. Bit ćete preusmjereni na stranicu za prijavu.");
+        alert(
+          "Profil uspješno obrisan. Bit ćete preusmjereni na stranicu za prijavu."
+        );
         window.location.href = "login.html";
       }
     } else {
@@ -128,7 +140,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  const updateDeliveryButton = document.querySelector("button[data-action='updateDelivery']");
+  const updateDeliveryButton = document.querySelector(
+    "button[data-action='updateDelivery']"
+  );
   if (updateDeliveryButton) {
     updateDeliveryButton.addEventListener("click", updateDeliveryDetails);
   }
