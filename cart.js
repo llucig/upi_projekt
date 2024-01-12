@@ -72,4 +72,21 @@ document.addEventListener("DOMContentLoaded", function () {
   if (updateDeliveryButton) {
     updateDeliveryButton.addEventListener("click", updateDeliveryDetails);
   }
+
+  // Učitavanje podataka o dostavi ako postoje
+  const storedDeliveryAddress = localStorage.getItem("deliveryAddress");
+  const storedDeliveryPhoneNumber = localStorage.getItem("deliveryPhoneNumber");
+
+  if (storedDeliveryAddress) {
+    deliveryAddressInput.value = storedDeliveryAddress;
+  }
+
+  if (storedDeliveryPhoneNumber) {
+    deliveryPhoneNumberInput.value = storedDeliveryPhoneNumber;
+  }
+
+  const saveDeliveryDetailsButton = document.getElementById("saveDeliveryDetails");
+  if (saveDeliveryDetailsButton) {
+    saveDeliveryDetailsButton.addEventListener("click", updateDeliveryDetails);
+  }
 });

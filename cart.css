@@ -10,22 +10,6 @@ header {
     padding: 10px;
     text-align: center;
 }
-nav {
-    display: flex;
-    justify-content: flex-end;
-    background-color: #95c7a8;
-    padding: 10px;
-  }
-  
-  nav a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 10px;
-  }
-  
-  nav a:hover {
-    text-decoration: underline;
-  }
 
 section {
     padding: 20px;
@@ -43,6 +27,7 @@ footer {
     text-align: center;
     padding: 10px;
     position: absolute;
+    bottom: 0;
     width: 100%;
 }
 
