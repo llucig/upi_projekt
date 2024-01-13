@@ -10,14 +10,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function displayUserProfile() {
     const currentUser = getCurrentUser();
+    const loggedInUserName = document.getElementById("loggedInUserName");
 
-    if (currentUser) {
+    if (currentUser && currentUser.email !== "admin@example.com") {
       document.getElementById("firstName").innerText = currentUser.firstName;
       document.getElementById("lastName").innerText = currentUser.lastName;
       document.getElementById("address").innerText = currentUser.address;
       document.getElementById("email").innerText = currentUser.email;
       document.getElementById("phoneNumber").innerText =
         currentUser.phoneNumber;
+      loggedInUserName.innerText = `${currentUser.firstName} ${currentUser.lastName}`;
+    } else if (currentUser && currentUser.email === "admin@example.com") {
+      document.getElementById("firstName").innerText = "Ivan";
+      document.getElementById("lastName").innerText = "Ivanović";
+      document.getElementById("address").innerText = "Cvite Fiskovića 3, Split";
+      document.getElementById("email").innerText = "admin@example.com";
+      document.getElementById("phoneNumber").innerText = "095746664";
+      loggedInUserName.innerText = "Administrator Ivan Ivanović";
+    }
+  }
+
+  function updateLoggedInUserName() {
+    const loggedInUserName = document.getElementById("loggedInUserName");
+    const currentUser = getCurrentUser();
+
+    if (currentUser && currentUser.email !== "admin@example.com") {
+      loggedInUserName.innerText = `${currentUser.firstName} ${currentUser.lastName}`;
+    } else if (currentUser && currentUser.email === "admin@example.com") {
+      loggedInUserName.innerText = "Administrator";
     }
   }
 
@@ -151,5 +171,23 @@ document.addEventListener("DOMContentLoaded", function () {
   displayOrderDetails();
 
   const logoutBtn = document.querySelector(".logout-btn");
-  logoutBtn.addEventListener("click", logout);
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", logout);
+  }
+
+  const changePasswordBtn = document.querySelector(
+    "button[onclick='promijeniLozinku()']"
+  );
+  if (changePasswordBtn) {
+    changePasswordBtn.addEventListener("click", promijeniLozinku);
+  }
+
+  const deleteProfileBtn = document.querySelector(
+    "button[onclick='obrisiProfil()']"
+  );
+  if (deleteProfileBtn) {
+    deleteProfileBtn.addEventListener("click", obrisiProfil);
+  }
+
+  
 });

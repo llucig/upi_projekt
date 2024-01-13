@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Administrator</title>
+    <link rel="stylesheet" href="login.css" />
+    <script defer src="login.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+
+  </head>
+  <body>
+    <header>
+      <h1>Administrator</h1>
+    </header>
+
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="cart.html">Košarica</a>
+      <a href="registration.html">Registracija</a>
+      <a href="login.html">Prijava</a>
+      <a href="mojProfil.html">MojProfil</a>
+      <a href="admin.login.html">Administrator</a>
+      <!-- Dodao poveznice za svaki restoran -->
+    </nav>
+
+    <section>
+      <form id="loginForm">
+        <label for="loginEmail">Email:</label>
+        <input type="email" id="loginEmail" name="loginEmail" required />
+
+        <label for="loginPassword">Lozinka:</label>
+        <input
+          type="password"
+          id="loginPassword"
+          name="loginPassword"
+          required
+        />
+        <button type="submit">Prijavi se</button>
+        <button class="logout-btn" onclick="logout()">Odjava</button>
+        <br />
+      </form>
+
+      <div class="button-container">
+        <button type="button" onclick="pretrazi()">Pretraži korisnički profil</button>
+        <button class="download-btn">Preuzmi podatke o narudžbi</button>
+        <button type="button" onclick="izbrisi()">Izbriši korisnički profil</button>
+      </div>
+      <!-- Dodaj div za prikazivanje korisnika -->
+      <div id="userListContainer">
+        <div id="userListLabel">Podaci o korisnicima:</div>
+
+        <label id="userDropdownLabel" for="userDropdown">Odaberi korisnika:</label>
+        <select id="userDropdown" onchange="prikaziPodatke()" aria-labelledby="userDropdownLabel" title="Odaberi korisnika">
+            <option value="" disabled selected>Odaberi korisnika</option>
+
+        </select>
+        <div id="userInfoContainer">
+          <div id="userInfo"></div>
+        </div>
+      </div>
+    </section>
+    <footer>
+    </footer>
+    <script>
+      //Odjava administratora
+    function logout() {
+    localStorage.removeItem("loggedInUser");
+    alert("Uspješno ste se odjavili kao administrator!");
+    window.location.href = "index.html";
+  }
+  const logoutBtn = document.querySelector(".logout-btn");
+  logoutBtn.addEventListener("click", logout);
+
+      // Preuzimanje 
+      document.addEventListener("DOMContentLoaded", function () {
+      const registeredUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
+      const adminExists = registeredUsers.some(user => user.email === "admin@example.com");
+      if (!adminExists) {
+        const adminUser = {
+          email: "admin@example.com",
+          password: "admin123"
+        };
+        registeredUsers.push(adminUser);
+        localStorage.setItem("registeredUsers", JSON.stringify(registeredUsers));
+      }
+      const downloadBtn = document.querySelector(".download-btn");
+      downloadBtn.addEventListener("click", () => {
+        window.location = "cart.html";
+      });
+    });
+    
+      function pretrazi() {
+        const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+        if (!loggedInUser || loggedInUser.email !== "admin@example.com") {
+        alert("Morate se prijaviti kao administrator da biste pregledali korisničke profile.");
+        return;
+        }
+        const registeredUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
+        const userDropdown = document.getElementById("userDropdown");
+        userDropdown.innerHTML = '<option value="" disabled selected>Odaberi korisnika</option>';
+        registeredUsers.forEach((user) => {
+          const option = document.createElement("option");
+          option.value = user.email;
+          option.textContent = `${user.firstName} ${user.lastName}`;
+          userDropdown.appendChild(option);
+        });
+        const userListContainer = document.getElementById("userListContainer");
+        userListContainer.style.display = "block";
+      }
+
+      function prikaziPodatke() {
+        const userDropdown = document.getElementById("userDropdown");
+        const selectedEmail = userDropdown.value;
+        if (selectedEmail) {
+          const registeredUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
+          const selectedUser = registeredUsers.find((user) => user.email === selectedEmail);
+          if (selectedUser) {
+            const userInfoContainer = document.getElementById("userInfoContainer");
+            userInfoContainer.style.display = "block";
+            const userInfo = document.getElementById("userInfo");
+            userInfo.innerHTML = `
+              <p>Ime: ${selectedUser.firstName}</p>
+              <p>Prezime: ${selectedUser.lastName}</p>
+              <p>Adresa: ${selectedUser.address}</p>
+              <p>Email: ${selectedUser.email}</p>
+              <p>Broj telefona: ${selectedUser.phoneNumber || "N/A"}</p>
+            `;
+          }
+        }
+      }
+
+      function izbrisi() {
+        const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+        if (!loggedInUser || loggedInUser.email !== "admin@example.com") {
+          alert("Morate se prijaviti kao administrator da biste izbrisali korisnički račun!");
+          return;
+        }
+        const userDropdown = document.getElementById("userDropdown");
+        const selectedEmail = userDropdown.value;
+        if (selectedEmail) {
+          const confirmed = confirm("Jeste li sigurni da želite izbrisati odabranog korisnika?");
+          if (confirmed) {
+            let registeredUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
+            registeredUsers = registeredUsers.filter((user) => user.email !== selectedEmail);
+            localStorage.setItem("registeredUsers", JSON.stringify(registeredUsers));
+            pretrazi();
+            const userInfoContainer = document.getElementById("userInfoContainer");
+            userInfoContainer.style.display = "none";
+            const userInfo = document.getElementById("userInfo");
+            userInfo.innerHTML = "";
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

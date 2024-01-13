@@ -1,0 +1,61 @@
+
+.button-container {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  button {
+    padding: 10px;
+    background-color: #4ab14d;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #6859ec;
+  }
+  
+  #userListContainer {
+    display: none;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 8px; 
+  }
+  
+  #userListLabel {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  #userDropdown {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+
+  #userDropdownLabel {
+    display: none;
+  }
+  
+  
+  #userInfoContainer {
+    display: none;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 8px; 
+  }
+  
+  #userInfo {
+    margin-bottom: 5px;
+  }
+  
+  #userInfo p {
+    margin: 5px 0;
+  }
+  

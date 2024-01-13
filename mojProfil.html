@@ -8,12 +8,14 @@
   </head>
   <body>
     <header><h1>Moj Profil</h1></header>
+    <h1 id="loggedInUserName"></h1>
     <nav>
       <a href="index.html">Home</a>
       <a href="cart.html">Košarica</a>
       <a href="registration.html">Registracija</a>
       <a href="login.html">Prijava</a>
       <a href="mojProfil.html">MojProfil</a>
+      <a href="admin.login.html">Administrator</a>
       <!-- Dodao poveznice za svaki restoran -->
     </nav>
     <div class="profile-container">
@@ -44,7 +46,6 @@
         <p id="phoneNumber"></p>
       </div>
       <br />
-
       <div id="orderDetails">
         <h2>Podaci o narudžbi</h2>
         <div id="orderItems">
@@ -70,16 +71,30 @@
 
       <form id="changePasswordForm">
         <label for="oldPassword">Stara lozinka:</label>
-        <input type="password" id="oldPassword" required>
-        <br>
+        <input type="password" id="oldPassword" required />
+        <br />
+        <br />
         <label for="newPassword">Nova lozinka:</label>
-        <input type="password" id="newPassword" required>
-        <br>
-        <button type="button" onclick="promijeniLozinku()">Promijeni lozinku</button>
+        <input type="password" id="newPassword" required />
+        <br />
+        <br />
+        <button type="button" onclick="promijeniLozinku()">
+          Promijeni lozinku
+        </button>
       </form>
-  
-      <button class="logout-btn" onclick="logout()">Odjava</button><br>
+      <br />
+      <button class="logout-btn" onclick="logout()">Odjava</button>
+      <br />
       <button type="button" onclick="obrisiProfil()">Obriši profil</button>
+
+      <div class="cart-details">
+        <h2>Podaci o košarici</h2>
+        <div id="cartItems">
+          <!-- Ovdje će se prikazati artikli iz košarice -->
+        </div>
+        <p>Ukupna cijena: <span id="totalPrice">0.00€</span></p>
+      </div>
+    </div>
     <script src="mojProfil.js"></script>
   </body>
 </html>

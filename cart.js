@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const cardDetailsSection = document.getElementById("cardDetailsSection");
   const paymentRadios = document.querySelectorAll(".paymentRadio");
   const cardDetailsLabels = document.getElementById("cardDetailsLabels");
+  
 
   paymentCheckboxes.forEach(function (checkbox) {
     checkbox.addEventListener("change", function () {
@@ -45,12 +46,45 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
+  const completeOrderButton = document.getElementById("narucivanje");
+  if (completeOrderButton) {
+    completeOrderButton.addEventListener("click", placeOrder);
+  }
+
+  function placeOrder() {
+    const paymentMethod = document.querySelector("input[name='paymentMethod']:checked");
+
+
+
+    if (paymentMethod.value === "gotovina") {
+      alert("Narudžba izvršena!");
+      closeModal();
+    } else if (paymentMethod.value === "kartica") {
+      const cardOwner = document.getElementById("cardOwner").value;
+      const cardNumber = document.getElementById("cardNumber").value;
+      const cardExpiration = document.getElementById("cardExpiration").value;
+      const cardCvv = document.getElementById("cardCvv").value;
+
+      if (cardOwner && cardNumber && cardExpiration && cardCvv) {
+        alert("Narudžba izvršena!");
+        closeModal();
+      } else {
+        alert("Molimo ispunite sva polja o kartici!");
+      }
+    }
+  }
+  // ... ostatak vašeg koda
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
   const cartItemsContainer = document.getElementById("cartItems");
   const totalPriceElement = document.getElementById("totalPrice");
   const totalWithDeliveryElement = document.getElementById("totalWithDelivery");
   const deliveryAddressInput = document.getElementById("deliveryAddress");
   const deliveryPhoneNumberInput = document.getElementById("deliveryPhoneNumber");
   const orderButton = document.getElementById("orderButton");
+  const downloadCart = document.querySelector(".downloadCart");
 
   if (orderButton) {
     orderButton.addEventListener("click", openModal );
@@ -153,6 +187,16 @@ const completeOrderButton = document.getElementById("narucivanje");
 
     totalPriceElement.textContent = total.toFixed(2);
     totalWithDeliveryElement.textContent = (total + 2).toFixed(2);
+  }
+  if (downloadCart) {
+    downloadCart.addEventListener("click", function () {
+      const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+      if (!loggedInUser || loggedInUser.email !== "admin@example.com") {
+        alert("Morate se prijaviti kao administrator da biste preuzeli podatke o narudžbama!");
+        return;
+      }
+      window.print();
+    });
   }
 
   updateCart();
