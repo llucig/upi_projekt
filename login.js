@@ -22,7 +22,7 @@ function handleLogin(event) {
   if (user) {
     alert(`Uspješna prijava!\nEmail: ${loginEmail}\nLozinka: ${loginPassword}`);
     localStorage.setItem("loggedInUser", JSON.stringify({ email: loginEmail }));
-    window.location.href = "mojProfil.html"; // Navigacija na stranicu profila
+    window.location.href = "mojprofil.html"; // Navigacija na stranicu profila
   } else {
     alert("Neuspješna prijava. Provjerite email i lozinku.");
   }
