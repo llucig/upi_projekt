@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const cardDetailsSection = document.getElementById("cardDetailsSection");
   const paymentRadios = document.querySelectorAll(".paymentRadio");
   const cardDetailsLabels = document.getElementById("cardDetailsLabels");
-  
 
   paymentCheckboxes.forEach(function (checkbox) {
     checkbox.addEventListener("change", function () {
@@ -48,34 +47,111 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   const completeOrderButton = document.getElementById("narucivanje");
   if (completeOrderButton) {
-    completeOrderButton.addEventListener("click", placeOrder);
+    completeOrderButton.addEventListener("click", validateAndPlaceOrder);
   }
 
-  function placeOrder() {
-    const paymentMethod = document.querySelector("input[name='paymentMethod']:checked");
-
-
-
-    if (paymentMethod.value === "gotovina") {
-      alert("Narudžba izvršena!");
-      closeModal();
-    } else if (paymentMethod.value === "kartica") {
-      const cardOwner = document.getElementById("cardOwner").value;
+  function validateAndPlaceOrder() {
+    const paymentMethod = document.querySelector("input[name='paymentOption']:checked");
+  
+    if (paymentMethod && paymentMethod.id === "cardPayment") {
+      const cardOwnerName = document.getElementById("cardOwnerName").value;
       const cardNumber = document.getElementById("cardNumber").value;
       const cardExpiration = document.getElementById("cardExpiration").value;
-      const cardCvv = document.getElementById("cardCvv").value;
-
-      if (cardOwner && cardNumber && cardExpiration && cardCvv) {
-        alert("Narudžba izvršena!");
-        closeModal();
-      } else {
-        alert("Molimo ispunite sva polja o kartici!");
+      const cardCVC = document.getElementById("cardCVC").value;
+  
+      if (!cardOwnerName || !cardNumber || !cardExpiration || !cardCVC) {
+        alert("Molimo popunite sva polja za unos!");
+        return;
       }
+  
+      // Validacija kartičnih podataka
+      if (!validateCardDetails()) {
+        return;
+      }
+    } else if (!paymentMethod) {
+      alert("Molimo odaberite način plaćanja!");
+      return;
     }
+  
+    // Ovdje možete nastaviti s ostatkom koda za obradu narudžbe
+    // Primjer: spremanje narudžbe, slanje na server itd.
+  
+    // Prikazivanje alert poruke
+    alert("Narudžba izvršena!");
+  
+    // Zatvaranje modalnog prozora
+    clearModal();
+    updateCart();
   }
-  // ... ostatak vašeg koda
-});
 
+  function clearModal() {
+    // Postavi sve input elemente unutar modalnog prozora na prazan string
+    const modalInputs = document.querySelectorAll("#myModal input[type='text']");
+    modalInputs.forEach(function (input) {
+      input.value = "";
+    });
+
+    // Zatvori sekciju nova adresa za dostavu ako je otvorena
+    const newAddressSection = document.getElementById("newAddressSection");
+    newAddressSection.style.display = "none";
+
+    // Resetiraj i sakrij detalje kartice
+    resetCardDetails();
+    cardDetailsLabels.style.display = "none";
+  }
+
+  function validateCardDetails() {
+  const cardNumber = document.getElementById("cardNumber").value;
+  const cardExpiration = document.getElementById("cardExpiration").value;
+  const cardCVC = document.getElementById("cardCVC").value;
+    
+  if (!isValidCardNumber(cardNumber)) {
+    alert("Neispravan broj kartice");
+    return false;
+  }
+
+  if (!isValidCardExpiration(cardExpiration)) {
+    
+    return false;
+  }
+
+  if (!isValidCardCVC(cardCVC)) {
+    alert("Neispravan CVV - mora imati točno 3 znamenke");
+    return false;
+  }
+
+  return true;
+}
+
+  function isValidCardNumber(cardNumber) {
+    // Implementirajte provjeru duljine i numeričke vrijednosti
+    return /^\d{16}$/.test(cardNumber);
+  }
+  function isValidCardCVC(cardCVC) {
+    return /^\d{3}$/.test(cardCVC);
+  }
+
+  function isValidCardExpiration(cardExpiration) {
+    // Implementirajte provjeru formata MMYY
+    const regex = /^(0[1-9]|1[0-2])(\d{2})$/;
+    if (!regex.test(cardExpiration)) {
+      alert("Neispravan format datuma isteka kartice. Ispravan format je MMYY.");
+      return false;
+    }
+  
+    const [, month, year] = cardExpiration.match(regex);
+    const currentDate = new Date();
+    const expirationDate = new Date(`20${year}`, month - 1);
+  
+    if (expirationDate < currentDate) {
+      alert("Neispravan datum isteka kartice. Kartica je već istekla.");
+      return false;
+    }
+  
+    return true;
+  }
+  
+});
 
 document.addEventListener("DOMContentLoaded", function () {
   const cartItemsContainer = document.getElementById("cartItems");
@@ -87,7 +163,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const downloadCart = document.querySelector(".downloadCart");
 
   if (orderButton) {
-    orderButton.addEventListener("click", openModal );
+    orderButton.addEventListener("click", openModal);
   }
 
   function openModal() {
@@ -134,25 +210,19 @@ document.addEventListener("DOMContentLoaded", function () {
       newAddressSection.style.display = "none";
     }
   }
-  // ... postojeći JavaScript kod ...
 
+  function placeOrder() {
+    // Ovdje možete dodati logiku za obradu narudžbe
+    // Primjer: spremanje narudžbe, slanje na server itd.
 
+    // Zatvaranje modalnog prozora
+    closeModal();
+  }
 
-function placeOrder() {
-  // Ovdje možete dodati logiku za obradu narudžbe
-  // Primjer: spremanje narudžbe, slanje na server itd.
-
-  // Prikazivanje alert poruke
-  alert("Narudžba izvršena!");
-
-  // Zatvaranje modalnog prozora
-  closeModal();
-}
-const completeOrderButton = document.getElementById("narucivanje");
+  const completeOrderButton = document.getElementById("narucivanje");
   if (completeOrderButton) {
     completeOrderButton.addEventListener("click", placeOrder);
   }
-
 
   function updateCart() {
     cartItemsContainer.innerHTML = "";
@@ -188,6 +258,7 @@ const completeOrderButton = document.getElementById("narucivanje");
     totalPriceElement.textContent = total.toFixed(2);
     totalWithDeliveryElement.textContent = (total + 2).toFixed(2);
   }
+
   if (downloadCart) {
     downloadCart.addEventListener("click", function () {
       const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
@@ -237,4 +308,3 @@ const completeOrderButton = document.getElementById("narucivanje");
     saveDeliveryDetailsButton.addEventListener("click", updateDeliveryDetails);
   }
 });
-
